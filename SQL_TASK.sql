@@ -126,7 +126,8 @@ or item like '%ea%';
 -- Return results in following format "Customer Last name Customer First name" "Last name First name of customer who recomended the new customer"
 -- Sort/Order by customer last name (ascending)
 
-select a.last_name as customer_lastname, a.first_name as customer_firstname, b.last_name as ref_lastname, b.first_name as ref_firstname from customers a
+select a.last_name as customer_lastname, a.first_name as customer_firstname, b.last_name as ref_lastname, b.first_name as ref_firstname 
+from customers a
 join customers b
 on a.customer_id = b.referred_by_id
 order by a.last_name;
