@@ -107,9 +107,7 @@ CASE
     ELSE 'BIG'
 END AS order_size
 from customers
-FULL OUTER JOIN contacts
-on customers.customer_id = contacts.customer_id
-FULL OUTER JOIN orders
+INNER JOIN orders
 on customers.customer_id = orders.customer_id
 where order_id IS NOT NULL
 order by order_id asc;
