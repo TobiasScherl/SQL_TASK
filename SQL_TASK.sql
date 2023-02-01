@@ -70,9 +70,9 @@ on customers.customer_id = orders.customer_id;
 -- first name, last name, email, order id and item
 
 select first_name, last_name, email, order_id, item from customers
-FULL OUTER JOIN contacts
+INNER JOIN contacts
 on customers.customer_id = contacts.customer_id
-FULL OUTER JOIN orders
+INNER JOIN orders
 on customers.customer_id = orders.customer_id
 group by first_name, last_name, email, order_id, item
 having COUNT(order_id) > 1;
@@ -84,9 +84,9 @@ having COUNT(order_id) > 1;
 -- Order result by customer last name
 
 select  distinct order_id, first_name, last_name, email, item  from customers
-FULL OUTER JOIN contacts
+INNER JOIN contacts
 on customers.customer_id = contacts.customer_id
-FULL OUTER JOIN orders
+INNER JOIN orders
 on customers.customer_id = orders.customer_id
 where order_id IS NOT NULL
 order by last_name;
@@ -128,6 +128,6 @@ or item like '%ea%';
 
 select a.last_name as customer_lastname, a.first_name as customer_firstname, b.last_name as ref_lastname, b.first_name as ref_firstname 
 from customers a
-join customers b
+INNER join customers b
 on a.customer_id = b.referred_by_id
 order by a.last_name;
